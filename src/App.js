@@ -7,7 +7,7 @@ import contractABI from './utils/contractABI.json';
 const GITHUB_LINK = `https://github.com/aritra1804`;
 // Add the domain you will be minting
 const tld = '.alfi';
-const CONTRACT_ADDRESS = '0xb5Fe668e540b9B4E71B3544C6C1d2DB947526Cde';
+const CONTRACT_ADDRESS = '0xb95B77F9734924A5b873684F02B11acAb21F1a3c';
 
 const App = () => {
 	const [currentAccount, setCurrentAccount] = useState('');
