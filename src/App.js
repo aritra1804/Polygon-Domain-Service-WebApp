@@ -3,29 +3,33 @@ import './styles/App.css';
 
 // Constants
 const GITHUB_LINK = `https://github.com/aritra1804`;
+// Add the domain you will be minting
+const tld = '.ninja';
+const CONTRACT_ADDRESS = 'YOUR_CONTRACT_ADDRESS_HERE';
+
 const App = () => {
 	const [currentAccount, setCurrentAccount] = useState('');
-    
-	// Implement your connectWallet method here
-	const connectWallet = async () => {
-		try {
-			const { ethereum } = window;
+	// Add some state data propertie
+	const [domain, setDomain] = useState('');
+  const [record, setRecord] = useState('');
 
-			if (!ethereum) {
-				alert("Get MetaMask -> https://metamask.io/");
-				return;
-			}
+  const connectWallet = async () => {
+    try {
+      const { ethereum } = window;
 
-			// Fancy method to request access to account.
-			const accounts = await ethereum.request({ method: "eth_requestAccounts" });
-		
-			// Boom! This should print out public address once we authorize Metamask.
-			console.log("Connected", accounts[0]);
-			setCurrentAccount(accounts[0]);
-		} catch (error) {
-			console.log(error)
-		}
-	}
+      if (!ethereum) {
+        alert("Get MetaMask -> https://metamask.io/");
+        return;
+      }
+			
+      const accounts = await ethereum.request({ method: "eth_requestAccounts" });
+      
+      console.log("Connected", accounts[0]);
+      setCurrentAccount(accounts[0]);
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
 	const checkIfWalletIsConnected = async () => {
 		const { ethereum } = window;
@@ -48,16 +52,50 @@ const App = () => {
 		}
 	};
 
-	// Render Methods
+	// Render methods
 	const renderNotConnectedContainer = () => (
 		<div className="connect-wallet-container">
 			<img src="https://media.giphy.com/media/3ohhwytHcusSCXXOUg/giphy.gif" alt="Ninja donut gif" />
-			{/* Call the connectWallet function we just wrote when the button is clicked */}
+      {/* Call the connectWallet function we just wrote when the button is clicked */}
 			<button onClick={connectWallet} className="cta-button connect-wallet-button">
 				Connect Wallet
 			</button>
 		</div>
 	);
+	
+	// Form to enter domain name and data
+	const renderInputForm = () =>{
+		return (
+			<div className="form-container">
+				<div className="first-row">
+					<input
+						type="text"
+						value={domain}
+						placeholder='domain'
+						onChange={e => setDomain(e.target.value)}
+					/>
+					<p className='tld'> {tld} </p>
+				</div>
+
+				<input
+					type="text"
+					value={record}
+					placeholder='whats ur ninja power'
+					onChange={e => setRecord(e.target.value)}
+				/>
+
+				<div className="button-container">
+					<button className='cta-button mint-button' disabled={null} onClick={null}>
+						Mint
+					</button>  
+					<button className='cta-button mint-button' disabled={null} onClick={null}>
+						Set data
+					</button>  
+				</div>
+
+			</div>
+		);
+	}
   
 	useEffect(() => {
 		checkIfWalletIsConnected();
@@ -66,26 +104,27 @@ const App = () => {
 	return (
 		<div className="App">
 			<div className="container">
-	
 				<div className="header-container">
 					<header>
-			<div className="left">
-			<p className="title">👽🤖 Alfi Name Service</p>
-			<p className="subtitle">Your friendly neighbourhood API on the blockchain!</p>
-			</div>
+						<div className="left">
+							<p className="title">🐱‍👤 Ninja Name Service</p>
+							<p className="subtitle">Your immortal API on the blockchain!</p>
+						</div>
 					</header>
 				</div>
-	
-				{/* Add your render method here */}
-				{renderNotConnectedContainer()}
-	
-		<div className="footer-container">
+				
+				{!currentAccount && renderNotConnectedContainer()}
+				{/* Render the input form if an account is connected */}
+				{currentAccount && renderInputForm()}
+				
+				<div className="footer-container">
+					<img alt="Twitter Logo" className="twitter-logo" src={twitterLogo} />
 					<a
 						className="footer-text"
-						href={GITHUB_LINK}
+						href={TWITTER_LINK}
 						target="_blank"
 						rel="noreferrer"
-					>{`Built by Aritra💖`}</a>
+					>{`built with @${TWITTER_HANDLE}`}</a>
 				</div>
 			</div>
 		</div>
