@@ -4,7 +4,7 @@ import './styles/App.css';
 // Constants
 const GITHUB_LINK = `https://github.com/aritra1804`;
 // Add the domain you will be minting
-const tld = '.ninja';
+const tld = '.alfi';
 const CONTRACT_ADDRESS = 'YOUR_CONTRACT_ADDRESS_HERE';
 
 const App = () => {
@@ -104,27 +104,26 @@ const App = () => {
 	return (
 		<div className="App">
 			<div className="container">
+	
 				<div className="header-container">
 					<header>
-						<div className="left">
-							<p className="title">🐱‍👤 Ninja Name Service</p>
-							<p className="subtitle">Your immortal API on the blockchain!</p>
-						</div>
+			<div className="left">
+			<p className="title">👽🤖 Alfi Name Service</p>
+			<p className="subtitle">Your friendly neighbourhood API on the blockchain!</p>
+			</div>
 					</header>
 				</div>
-				
-				{!currentAccount && renderNotConnectedContainer()}
-				{/* Render the input form if an account is connected */}
-				{currentAccount && renderInputForm()}
-				
-				<div className="footer-container">
-					<img alt="Twitter Logo" className="twitter-logo" src={twitterLogo} />
+	
+				{/* Add your render method here */}
+				{renderNotConnectedContainer()}
+	
+		<div className="footer-container">
 					<a
 						className="footer-text"
-						href={TWITTER_LINK}
+						href={GITHUB_LINK}
 						target="_blank"
 						rel="noreferrer"
-					>{`built with @${TWITTER_HANDLE}`}</a>
+					>{`Built by Aritra💖`}</a>
 				</div>
 			</div>
 		</div>
