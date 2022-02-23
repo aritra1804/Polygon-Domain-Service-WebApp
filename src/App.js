@@ -5,13 +5,13 @@ import './styles/App.css';
 const GITHUB_LINK = `https://github.com/aritra1804`;
 // Add the domain you will be minting
 const tld = '.alfi';
-const CONTRACT_ADDRESS = 'YOUR_CONTRACT_ADDRESS_HERE';
+const CONTRACT_ADDRESS = '0xb5Fe668e540b9B4E71B3544C6C1d2DB947526Cde';
 
 const App = () => {
 	const [currentAccount, setCurrentAccount] = useState('');
 	// Add some state data propertie
 	const [domain, setDomain] = useState('');
-  const [record, setRecord] = useState('');
+	const [record, setRecord] = useState('');
 
   const connectWallet = async () => {
     try {
@@ -114,9 +114,9 @@ const App = () => {
 					</header>
 				</div>
 	
-				{/* Add your render method here */}
-				{renderNotConnectedContainer()}
-	
+				{!currentAccount && renderNotConnectedContainer()}
+				{/* Render the input form if an account is connected */}
+				{currentAccount && renderInputForm()}
 		<div className="footer-container">
 					<a
 						className="footer-text"
