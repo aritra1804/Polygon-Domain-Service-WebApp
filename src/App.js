@@ -78,6 +78,7 @@ const App = () => {
 	console.log(error);
   }
 }
+
 	const checkIfWalletIsConnected = async () => {
 		
 	 };
